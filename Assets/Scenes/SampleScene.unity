@@ -10217,6 +10217,7 @@ MonoBehaviour:
   firstPersonCamera: {fileID: 5520866416126322848}
   thirdPersonCamera: {fileID: 959248920161614105}
   switchKeyReference: {fileID: -1233620729566710789, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  movementScript: {fileID: 3345682380655913006}
 --- !u!1 &6600396371367477507
 GameObject:
   m_ObjectHideFlags: 0
@@ -12928,7 +12929,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 250979948552268857}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: 3.92, y: 0.39, z: -5.74}
+  m_LocalPosition: {x: 3.92, y: -0.226, z: -5.74}
   m_LocalScale: {x: 0.711067, y: 0.5298646, z: 0.8472991}
   m_ConstrainProportionsScale: 0
   m_Children: []
