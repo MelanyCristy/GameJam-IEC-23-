@@ -12,6 +12,7 @@ public class CameraSwitcher : MonoBehaviour
     public GameObject firstPersonCamera;
     public GameObject thirdPersonCamera;
     [SerializeField] private InputActionReference switchKeyReference;
+    public MonoBehaviour movementScript;
 
     private bool isUsingThirdPerson;
     private bool canSwitchCamera = true;
@@ -40,11 +41,13 @@ public class CameraSwitcher : MonoBehaviour
     {
         thirdPersonCamera.SetActive(false);
         firstPersonCamera.SetActive(true);
+        movementScript.enabled = false;
     }
     else
     {
         firstPersonCamera.SetActive(false);
         thirdPersonCamera.SetActive(true);
+        movementScript.enabled = true;
     }
 
     isUsingThirdPerson = !isUsingThirdPerson;
