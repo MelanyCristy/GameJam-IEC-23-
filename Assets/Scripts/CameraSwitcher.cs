@@ -1,59 +1,81 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.Profiling;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.InputSystem;
-using UnityEngine.XR.Management;
 
 public class CameraSwitcher : MonoBehaviour
 {
-    public GameObject firstPersonCamera;
-    public GameObject thirdPersonCamera;
-    [SerializeField] private InputActionReference switchKeyReference;
-    public MonoBehaviour movementScript;
+    [SerializeField] private Movement newMovementScript;
+    [SerializeField] private InputActionReference thidSwitchKeyReference;
+    [SerializeField] private InputActionReference firstPersonSwitchKeyReference;
+    public float switchDelay = 0.2f;
+    private float lastSwitchTime;
 
-    private bool isUsingThirdPerson;
-    private bool canSwitchCamera = true;
-    private void Start()
+    void Start()
     {
-        firstPersonCamera.SetActive(false);
-        thirdPersonCamera.SetActive(true);
-        isUsingThirdPerson = true;
-    }
-
-    private void Update()
-    {
-        float floatSwitchKeyValue = switchKeyReference.action.ReadValue<float>();
-        bool booleanSwitchKeyValue = Convert.ToBoolean(floatSwitchKeyValue > 0.5f);
-        
-        if (booleanSwitchKeyValue && canSwitchCamera)
+        // Assuming you have a reference to the Movement script
+        if (newMovementScript == null)
         {
-            StartCoroutine(SwitchCameraWithDelay());
+            Debug.LogError("Movement script reference not set.");
         }
     }
-    private IEnumerator SwitchCameraWithDelay()
-    {
-        canSwitchCamera = false;
 
-    if (isUsingThirdPerson)
+    void Update()
     {
-        thirdPersonCamera.SetActive(false);
-        firstPersonCamera.SetActive(true);
-        movementScript.enabled = false;
+        float floatthidSwitchKeyValue = thidSwitchKeyReference.action.ReadValue<float>();
+        float floatFirstPersonSwitchKeyValue = firstPersonSwitchKeyReference.action.ReadValue<float>();
+        if (floatthidSwitchKeyValue > 0.5f && Time.time - lastSwitchTime > switchDelay)
+        {
+            SwitchToNextCamera();
+            //SwitchCamera();
+            lastSwitchTime = Time.time;
+        }
+        if (floatFirstPersonSwitchKeyValue > 0.5f && Time.time - lastSwitchTime > switchDelay)
+        {
+            ToggleFirstPersonCamera();
+            lastSwitchTime = Time.time;
+        }
+        
+    }
+    void SwitchToNextCamera()
+    {
+        // Call the SwitchCamera method on the Movement script
+        int nextCameraIndex = (newMovementScript.activeCameraIndex + 1) % newMovementScript.cameras.Length;
+        newMovementScript.SwitchCamera(nextCameraIndex);
+    }
+   void ToggleFirstPersonCamera()
+{
+    // Toggle between the first-person camera and the current array camera
+    if (newMovementScript.IsUsingFirstPersonCamera())
+    {
+        // Switch to the next camera in the array
+        int nextCameraIndex = (newMovementScript.activeCameraIndex + 1) % newMovementScript.cameras.Length;
+        newMovementScript.SwitchCamera(nextCameraIndex);
     }
     else
     {
-        firstPersonCamera.SetActive(false);
-        thirdPersonCamera.SetActive(true);
-        movementScript.enabled = true;
+        // Switch to the first-person camera
+        int firstPersonCameraIndex = GetFirstPersonCameraIndex();
+
+        // Check if the first-person camera index is valid
+        if (firstPersonCameraIndex >= 0 && firstPersonCameraIndex < newMovementScript.cameras.Length)
+        {
+            newMovementScript.SwitchCamera(firstPersonCameraIndex);
+        }
     }
-
-    isUsingThirdPerson = !isUsingThirdPerson;
-
-    yield return new WaitForSeconds(1f);
-
-    canSwitchCamera = true;
+}
+    int GetFirstPersonCameraIndex()
+    {
+        // Find the index of the first-person camera in the array
+        for (int i = 0; i < newMovementScript.cameras.Length; i++)
+        {
+            if (newMovementScript.cameras[i].name == "FirstPersonCamera")
+            {
+                return i;
+            }
+        }
+        // If not found, return -1
+        return -1;
     }
 }
