@@ -1125,11 +1125,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7303299338288874185, guid: d3d1448f3ff154440b5c5b19ba9235ea, type: 3}
   m_PrefabInstance: {fileID: 134169881}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-=======
-=======
->>>>>>> 3d544fcce1af762c4e220087cae950c5597d16f0
 --- !u!1 &85419333
 GameObject:
   m_ObjectHideFlags: 0
@@ -1161,7 +1156,6 @@ Transform:
   m_Father: {fileID: 1641986899}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-<<<<<<< HEAD
 --- !u!1 &96484150
 GameObject:
   m_ObjectHideFlags: 0
@@ -1290,8 +1284,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-=======
->>>>>>> 3d544fcce1af762c4e220087cae950c5597d16f0
 --- !u!1 &105449364
 GameObject:
   m_ObjectHideFlags: 0
@@ -1423,10 +1415,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 120115692}
   m_Mesh: {fileID: -462981019419857548, guid: 726e3f7d937baeb49b1736be2907e0e5, type: 3}
-<<<<<<< HEAD
->>>>>>> Stashed changes
-=======
->>>>>>> 3d544fcce1af762c4e220087cae950c5597d16f0
 --- !u!1001 &134169881
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18039,7 +18027,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ec1265239061cd4f88fa152b9916caf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-<<<<<<< HEAD
 --- !u!82 &3345682380655913007
 AudioSource:
   m_ObjectHideFlags: 0
@@ -18148,8 +18135,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4932ebda6de3e334bbf36b44b4e50657, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-=======
->>>>>>> 3d544fcce1af762c4e220087cae950c5597d16f0
 --- !u!120 &3395656345158925744
 LineRenderer:
   m_ObjectHideFlags: 0
