@@ -46,7 +46,7 @@ public class Movement : MonoBehaviour
         bool isFirstPersonCamera = IsUsingFirstPersonCamera();
 
         // Set speed based on the active camera
-        speed = isFirstPersonCamera ? 0.0f : 6.0f;
+        speed = isFirstPersonCamera ? 6.0f : 6.0f;
         // Make sure there are cameras in the array
         if (cameras.Length == 0)
         {
